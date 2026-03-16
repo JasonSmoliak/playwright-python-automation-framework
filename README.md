@@ -8,20 +8,22 @@ The framework includes both **positive and negative test scenarios**, along with
 
 ## Project Structure
 
+```
 python-playwright/
 ├── pages/
-│ ├── example_page.py
-│ └── login_page.py
+│   ├── example_page.py
+│   └── login_page.py
 │
 ├── tests/
-│ ├── test_example.py
-│ └── test_login.py
+│   ├── test_example.py
+│   └── test_login.py
 │
 ├── screenshots/
 ├── test-results/
 ├── conftest.py
 ├── pytest.ini
 └── requirements.txt
+```
 
 
 ---
@@ -52,7 +54,7 @@ python-playwright/
 
 Clone the repository:
 
-git clone https://github.com/YOUR_USERNAME/playwright-python-automation-framework.git
+git clone https://github.com/jasonsmoliak/playwright-python-automation-framework.git
 
 cd playwright-python-automation-framework
 
