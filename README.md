@@ -1,5 +1,7 @@
 # Playwright Python Automation Framework
 
+![Playwright Tests](https://github.com/jasonsmoliak/playwright-python-automation-framework/actions/workflows/playwright.yml/badge.svg)
+
 This project demonstrates a small UI automation framework built with **Playwright**, **Python**, and **pytest** using the **Page Object Model (POM)** design pattern.
 
 The framework includes both **positive and negative test scenarios**, along with debugging features such as **automatic screenshots and Playwright trace files on failure**.
