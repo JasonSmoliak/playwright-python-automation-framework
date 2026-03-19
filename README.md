@@ -84,6 +84,34 @@ Run with visible browser:
 
 pytest --headed
 
+### Run with Makefile
+
+```bash
+make install
+make test
+make test-headed
+make test-parallel
+make test-parallel-headed
+make trace
+```
+
+### Parallel Execution
+
+This project supports parallel execution using `pytest-xdist`.
+
+Run all tests in parallel with:
+
+```bash
+pytest -n auto
+```
+
+Or with the Makefile:
+
+```bash
+make test-parallel
+```
+
+
 ---
 
 ## Debugging Failures
