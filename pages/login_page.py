@@ -1,12 +1,12 @@
-from playwright.sync_api import Page, expect
 import re
+from playwright.sync_api import Page, expect
 
 
 class LoginPage:
     def __init__(self, page: Page):
         self.page = page
-        self.username_input = page.get_by_label("Username")
-        self.password_input = page.get_by_label("Password")
+        self.username_input = page.locator("#username")
+        self.password_input = page.locator("#password")
         self.login_button = page.get_by_role("button", name="Login")
         self.logout_button = page.get_by_role("link", name="Logout")
         self.flash_message = page.locator("#flash")
@@ -28,5 +28,5 @@ class LoginPage:
         expect(self.logout_button).to_be_visible()
 
     def verify_failed_login(self):
-    	expect(self.flash_message).to_contain_text("Your username is invalid!")
+        expect(self.flash_message).to_contain_text("Your username is invalid!")
 
