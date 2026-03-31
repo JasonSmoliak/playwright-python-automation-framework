@@ -15,3 +15,5 @@ screenshots/
 # Mac files
 .DS_Store
 
+# Keep Auth files out
+.auth/
