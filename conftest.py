@@ -5,6 +5,14 @@ import pytest
 def app_url():
     return "https://example.com"
 
+@pytest.fixture
+def api_context(playwright):
+    context = playwright.request.new_context(
+        base_url="https://jsonplaceholder.typicode.com"
+    )
+    yield context
+    context.dispose()
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
