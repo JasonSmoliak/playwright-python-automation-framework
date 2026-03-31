@@ -2,10 +2,26 @@ import json
 from pathlib import Path
 import pytest
 
+from config import get_current_env
+
 
 @pytest.fixture(scope="session")
-def app_url():
-    return "https://example.com"
+def env_config():
+    return get_current_env()
+
+
+@pytest.fixture(scope="session")
+def app_url(env_config):
+    return env_config["base_url"]
+
+
+@pytest.fixture(scope="session")
+def credentials(env_config):
+    return {
+        "username": env_config["username"],
+        "password": env_config["password"],
+    }
+
 
 @pytest.fixture
 def api_context(playwright):
@@ -14,6 +30,7 @@ def api_context(playwright):
     )
     yield context
     context.dispose()
+
 
 @pytest.fixture(scope="session")
 def auth_state_file():
@@ -39,15 +56,3 @@ def auth_state_file():
         json.dump(state, f, indent=2)
 
     return state_file
-
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    report = outcome.get_result()
-
-    if report.when == "call" and report.failed:
-        page = item.funcargs.get("page", None)
-        if page:
-            screenshot_path = f"screenshots/{item.name}.png"
-            page.screenshot(path=screenshot_path)
-

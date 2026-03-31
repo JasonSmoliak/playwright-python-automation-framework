@@ -3,8 +3,9 @@ from playwright.sync_api import Page, expect
 
 
 class LoginPage:
-    def __init__(self, page: Page):
+    def __init__(self, page: Page, app_url: str):
         self.page = page
+        self.app_url = app_url
         self.username_input = page.locator("#username")
         self.password_input = page.locator("#password")
         self.login_button = page.get_by_role("button", name="Login")
@@ -13,7 +14,7 @@ class LoginPage:
 
     def load(self):
         self.page.goto(
-            "https://practice.expandtesting.com/login",
+            self.app_url,
             wait_until="domcontentloaded"
         )
 
@@ -29,4 +30,3 @@ class LoginPage:
 
     def verify_failed_login(self):
         expect(self.flash_message).to_contain_text("Your username is invalid!")
-
