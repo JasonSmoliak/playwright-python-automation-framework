@@ -85,12 +85,17 @@ Run with visible browser:
 pytest --headed
 
 🧰 Using Makefile (Recommended)
-make install
-make test
-make test-headed
-make test-parallel
-make test-parallel-headed
-make trace
+### Environment-specific commands
+
+```bash
+make test-dev
+make test-stage
+make test-prod
+
+make login-dev
+make login-stage
+make login-prod
+```
 
 ⚡ Parallel Execution
 

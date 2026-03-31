@@ -1,4 +1,5 @@
-.PHONY: install test test-headed test-parallel test-parallel-headed trace clean
+.PHONY: install test test-headed test-parallel test-parallel-headed trace clean \
+        test-dev test-stage test-prod login-dev login-stage login-prod
 
 install:
 	pip install -r requirements.txt
@@ -19,8 +20,25 @@ test-parallel-headed:
 trace:
 	pytest --headed --tracing=retain-on-failure
 
+test-dev:
+	TEST_ENV=dev pytest
+
+test-stage:
+	TEST_ENV=stage pytest
+
+test-prod:
+	TEST_ENV=prod pytest
+
+login-dev:
+	TEST_ENV=dev pytest tests/ui/test_login.py -v --headed
+
+login-stage:
+	TEST_ENV=stage pytest tests/ui/test_login.py -v --headed
+
+login-prod:
+	TEST_ENV=prod pytest tests/ui/test_login.py -v --headed
+
 clean:
-	rm -rf .pytest_cache test-results screenshots __pycache__
+	rm -rf .pytest_cache test-results screenshots .auth __pycache__
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
-
