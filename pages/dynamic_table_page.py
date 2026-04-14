@@ -7,7 +7,7 @@ class DynamicTablePage:
         self.page = page
         self.heading = page.get_by_role("heading", name="Dynamic Table")
         self.table = page.get_by_role("table")
-        self.chrome_cpu_label = page.get_by_text(re.compile(r"Chrome CPU:\s*\d+(\.\d+)?%"))
+        self.chrome_cpu_label = page.locator("p.bg-warning")
 
     def load(self):
         self.page.goto(
@@ -43,7 +43,12 @@ class DynamicTablePage:
 
     def get_chrome_cpu_label_value(self) -> str:
         label_text = self.chrome_cpu_label.inner_text().strip()
-        return label_text.split(":")[1].strip()
+        match = re.search(r"Chrome CPU:\s*([\d.]+%)", label_text)
+
+        if not match:
+            raise ValueError(f"Could not extract Chrome CPU value from label: {label_text}")
+
+        return match.group(1)
 
     def verify_chrome_cpu_matches_label(self):
         table_cpu = self.get_cpu_value_for_process("Chrome")
