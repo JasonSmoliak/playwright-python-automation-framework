@@ -56,3 +56,34 @@ def auth_state_file():
         json.dump(state, f, indent=2)
 
     return state_file
+
+import json
+from pathlib import Path
+import pytest
+
+
+@pytest.fixture(scope="function")
+def api_ui_state_file():
+    auth_dir = Path(".auth")
+    auth_dir.mkdir(exist_ok=True)
+
+    state_file = auth_dir / "api_ui_state.json"
+
+    state = {
+        "cookies": [],
+        "origins": [
+            {
+                "origin": "https://example.com",
+                "localStorage": [
+                    {"name": "auth_token", "value": "api-created-token-456"},
+                    {"name": "feature_flag", "value": "enabled"},
+                    {"name": "user_name", "value": "Jay"}
+                ]
+            }
+        ]
+    }
+
+    with open(state_file, "w") as f:
+        json.dump(state, f, indent=2)
+
+    return state_file
