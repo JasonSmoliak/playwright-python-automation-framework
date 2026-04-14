@@ -158,32 +158,7 @@ Reporting with Allure
 
 Dockerized test execution
 
-👤 Author
+👤 Author - Jason Smoliak
 
 Automation practice project demonstrating Playwright UI automation with Python and pytest.
-
----
-
-# 💡 What this does for you
-
-This version makes your repo:
-
-- **Easy to scan in 10 seconds**
-- Clearly **structured**
-- Shows **real-world tooling (CI, parallel, debugging)**
-- Looks like something used in an actual QA team
-
----
-
-# 🧠 One small but powerful next move
-
-Add this as your **GitHub repo description (top right)**:
-
-> Playwright + Python automation framework with pytest, POM design, CI pipeline, parallel execution, and failure debugging (screenshots + traces)
-
-Short, keyword-rich, recruiter-friendly.
-
----
-
-If you want next, I can show you **exactly how to talk through this project in an interview** — that’s where this really starts paying off.
 
