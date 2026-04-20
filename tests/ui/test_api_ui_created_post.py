@@ -6,10 +6,9 @@ from pages.post_details_page import PostDetailsPage
 
 
 def load_post_test_data():
-    data_file = Path("test_data/posts.json")
+    data_file = Path(__file__).resolve().parents[2] / "test_data" / "posts.json"
     with open(data_file, "r") as f:
         return json.load(f)
-
 
 test_data = load_post_test_data()
 
