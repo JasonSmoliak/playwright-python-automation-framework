@@ -1,8 +1,33 @@
 import json
+import os
+from datetime import datetime
 from pathlib import Path
+
+import allure
 import pytest
 
 from config import get_current_env
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+
+    if report.when == "call" and report.failed:
+        page = item.funcargs.get("page", None)
+        if page:
+            os.makedirs("screenshots", exist_ok=True)
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"screenshots/{item.name}_{timestamp}.png"
+
+            screenshot_bytes = page.screenshot(path=filename, full_page=True)
+
+            allure.attach(
+                screenshot_bytes,
+                name="Failure Screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
 
 
 @pytest.fixture(scope="session")
@@ -46,20 +71,16 @@ def auth_state_file():
                 "origin": "https://example.com",
                 "localStorage": [
                     {"name": "auth_token", "value": "mock-token-123"},
-                    {"name": "user_role", "value": "qa_tester"}
-                ]
+                    {"name": "user_role", "value": "qa_tester"},
+                ],
             }
-        ]
+        ],
     }
 
     with open(state_file, "w") as f:
         json.dump(state, f, indent=2)
 
     return state_file
-
-import json
-from pathlib import Path
-import pytest
 
 
 @pytest.fixture(scope="function")
@@ -77,10 +98,10 @@ def api_ui_state_file():
                 "localStorage": [
                     {"name": "auth_token", "value": "api-created-token-456"},
                     {"name": "feature_flag", "value": "enabled"},
-                    {"name": "user_name", "value": "Jay"}
-                ]
+                    {"name": "user_name", "value": "Jay"},
+                ],
             }
-        ]
+        ],
     }
 
     with open(state_file, "w") as f:
