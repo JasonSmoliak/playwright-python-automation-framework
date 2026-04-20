@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Playwright Combined Test",
+    "body": "Created through API and verified in UI",
+    "userId": 101
+  },
+  {
+    "title": "Second API UI Test",
+    "body": "Another record flowing from API to UI",
+    "userId": 202
+  },
+  {
+    "title": "Third Combined Scenario",
+    "body": "Parameterized test data example",
+    "userId": 303
+  }
+]
