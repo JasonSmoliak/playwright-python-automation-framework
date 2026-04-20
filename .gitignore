@@ -17,3 +17,7 @@ screenshots/
 
 # Keep Auth files out
 .auth/
+
+# Allure
+allure-results/
+allure-report/

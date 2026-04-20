@@ -42,3 +42,15 @@ clean:
 	rm -rf .pytest_cache test-results screenshots .auth __pycache__
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
+
+allure-results:
+	pytest --alluredir=allure-results --clean-alluredir
+
+allure-serve:
+	allure serve allure-results
+
+allure-generate:
+	allure generate allure-results -o allure-report --clean
+
+allure-open:
+	allure open allure-report
