@@ -1,27 +1,23 @@
+import json
+from pathlib import Path
 import pytest
 from playwright.sync_api import expect
 from pages.post_details_page import PostDetailsPage
 
 
+def load_post_test_data():
+    data_file = Path("test_data/posts.json")
+    with open(data_file, "r") as f:
+        return json.load(f)
+
+
+test_data = load_post_test_data()
+
+
 @pytest.mark.parametrize(
     "payload",
-    [
-        {
-            "title": "Playwright Combined Test",
-            "body": "Created through API and verified in UI",
-            "userId": 101,
-        },
-        {
-            "title": "Second API UI Test",
-            "body": "Another record flowing from API to UI",
-            "userId": 202,
-        },
-        {
-            "title": "Third Combined Scenario",
-            "body": "Parameterized test data example",
-            "userId": 303,
-        },
-    ],
+    test_data,
+    ids=[item["title"] for item in test_data]
 )
 def test_create_post_via_api_then_verify_in_ui(page, api_context, payload):
     response = api_context.post("/posts", data=payload)
