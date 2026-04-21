@@ -1,9 +1,10 @@
 import allure
 from pages.login_page import LoginPage
 
-
+@allure.epic("User Management")
+@allure.feature("Authentication")
+@allure.story("Successful Login")
 @allure.title("Successful login with valid credentials")
-@allure.suite("Authentication")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_successful_login(page, app_url, credentials):
     login_page = LoginPage(page, app_url)
@@ -17,8 +18,11 @@ def test_successful_login(page, app_url, credentials):
     with allure.step("Verify user is redirected to secure page"):
         login_page.verify_successful_login()
 
+
+@allure.epic("User Management")
+@allure.feature("Authentication")
+@allure.story("Invalid Login")
 @allure.title("Login fails with invalid credentials")
-@allure.suite("Authentication")
 @allure.severity(allure.severity_level.NORMAL)
 def test_invalid_login(page, app_url):
     login_page = LoginPage(page, app_url)
