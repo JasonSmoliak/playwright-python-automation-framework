@@ -1,10 +1,14 @@
-import os
+import sys
 from pathlib import Path
 
+# Add project root to PYTHONPATH
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+
+import os
 from config import get_current_env
 
 
-def main() -> None:
+def main():
     allure_results_dir = Path("allure-results")
     allure_results_dir.mkdir(exist_ok=True)
 
@@ -22,7 +26,7 @@ def main() -> None:
         "UI Automation=Playwright Python",
     ]
 
-    environment_file.write_text("\n".join(content) + "\n", encoding="utf-8")
+    environment_file.write_text("\n".join(content) + "\n")
     print(f"Wrote {environment_file}")
 
 
