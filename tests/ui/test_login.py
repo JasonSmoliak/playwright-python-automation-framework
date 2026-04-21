@@ -27,7 +27,7 @@ def test_invalid_login(page, app_url):
         login_page.load()
 
     with allure.step("Enter invalid credentials"):
-        login_page.login("wrong_user", "g_password")
+        login_page.login("wrong_user", "wrong_password")
 
     with allure.step("Verify error message is displayed"):
         login_page.verify_failed_login()
