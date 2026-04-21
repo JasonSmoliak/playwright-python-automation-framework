@@ -47,6 +47,7 @@ clean:
 allure-results:
 	pytest --alluredir=allure-results --clean-alluredir
 	python scripts/write_allure_environment.py
+	python scripts/write_allure_categories.py
 
 allure-serve:
 	allure serve allure-results
