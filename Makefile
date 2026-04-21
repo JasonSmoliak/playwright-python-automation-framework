@@ -1,5 +1,6 @@
 .PHONY: install test test-headed test-parallel test-parallel-headed trace clean \
-        test-dev test-stage test-prod login-dev login-stage login-prod
+        test-dev test-stage test-prod login-dev login-stage login-prod \
+        allure-results allure-serve allure-generate allure-open
 
 install:
 	pip install -r requirements.txt
@@ -45,6 +46,7 @@ clean:
 
 allure-results:
 	pytest --alluredir=allure-results --clean-alluredir
+	python scripts/write_allure_environment.py
 
 allure-serve:
 	allure serve allure-results
