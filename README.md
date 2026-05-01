@@ -25,23 +25,62 @@ python-playwright/
 ├── requirements.txt
 └── Makefile
 
-🚀 Features
+## Features
 
-Playwright browser automation
+### 🔹 UI Automation (Playwright)
+- End-to-end browser automation using Playwright (Python)
+- Page Object Model (POM) design pattern for maintainable test structure
+- Dynamic UI handling (elements appearing/disappearing, async updates)
+- Dropdown, modal, alert, and table interaction coverage
+- Robust locator strategies using roles, labels, and test IDs
 
-pytest test runner
+### 🔹 API Testing & Integration
+- API testing using Playwright request context
+- Combined API + UI validation workflows
+- API-driven test data creation and UI verification
+- Mocked API responses using Playwright network interception
 
-Page Object Model (POM)
+### 🔹 Data-Driven Testing
+- JSON-based test data management
+- Parameterized tests using pytest
+- Scalable approach for multiple test scenarios
 
-Positive and negative test coverage
+### 🔹 Test Organization & Execution
+- Custom pytest markers:
+  - `smoke` (critical path)
+  - `regression` (full suite)
+  - `ui` (UI tests)
+  - `api` (API tests)
+- Selective test execution via markers
+- Parallel test execution using pytest-xdist
+- Makefile commands for simplified test runs
 
-Parallel execution with pytest-xdist
+### 🔹 Flaky Test Handling
+- Controlled retry logic using pytest-rerunfailures
+- Targeted retries for unstable external UI scenarios
+- Avoids masking real defects while improving stability
 
-Automatic screenshots on failure
+### 🔹 Reporting (Allure)
+- Rich test reporting with:
+  - Step-level visibility
+  - Test hierarchy (Epic / Feature / Story)
+  - Screenshot capture on failure
+  - Environment metadata (browser, base URL, GitHub info)
+  - Custom failure categories (UI, API, config, flaky)
+- Clean, professional HTML reports
 
-Playwright trace files on failure
+### 🔹 CI/CD Integration
+- GitHub Actions pipeline for automated test execution
+- CI runs on every push and pull request
+- Environment-aware test execution
 
-GitHub Actions CI pipeline
+### 🔹 Developer Experience
+- Makefile for common workflows:
+  - Run tests
+  - Run subsets (smoke, UI, API)
+  - Generate Allure reports
+- Clean project structure for scalability
+- Reusable fixtures and centralized configuration
 
 🛠 Technologies Used
 
