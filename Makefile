@@ -1,6 +1,7 @@
 .PHONY: install test test-headed test-parallel test-parallel-headed trace clean \
         test-dev test-stage test-prod login-dev login-stage login-prod \
-        allure-results allure-serve allure-generate allure-open
+        allure-results allure-serve allure-generate allure-open \
+	test-smoke test-regression test-ui test-api
 
 install:
 	pip install -r requirements.txt
@@ -57,3 +58,21 @@ allure-generate:
 
 allure-open:
 	allure open allure-report
+
+test-smoke:
+	pytest -m smoke
+
+test-regression:
+	pytest -m regression
+
+test-ui:
+	pytest -m ui
+
+test-api:
+	pytest -m api
+
+test-ui-rerun:
+	pytest -m ui --reruns 2 --reruns-delay 1
+
+test-smoke-rerun:
+	pytest -m smoke --reruns 2 --reruns-delay 1

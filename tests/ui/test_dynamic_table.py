@@ -1,3 +1,7 @@
+import pytest
+
+pytestmark = [pytest.mark.ui, pytest.mark.flaky(reruns=2, reruns_delay=1)]
+
 from pages.dynamic_table_page import DynamicTablePage
 
 

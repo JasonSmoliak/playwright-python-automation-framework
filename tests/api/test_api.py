@@ -1,6 +1,9 @@
+import pytest
+import allure
 from playwright.sync_api import expect
 
-
+@pytest.mark.api
+@pytest.mark.smoke
 def test_get_post(api_context):
     response = api_context.get("/posts/1")
 
@@ -11,6 +14,8 @@ def test_get_post(api_context):
     assert "title" in body
 
 
+@pytest.mark.api
+@pytest.mark.regression
 def test_create_post(api_context):
     payload = {
         "title": "Playwright API test",

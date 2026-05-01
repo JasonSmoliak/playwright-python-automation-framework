@@ -1,6 +1,11 @@
+import pytest
 import allure
 from pages.login_page import LoginPage
+pytestmark = pytest.mark.ui
 
+
+@pytest.mark.smoke
+@pytest.mark.ui
 @allure.epic("User Management")
 @allure.feature("Authentication")
 @allure.story("Successful Login")
@@ -19,6 +24,8 @@ def test_successful_login(page, app_url, credentials):
         login_page.verify_successful_login()
 
 
+@pytest.mark.regression
+@pytest.mark.ui
 @allure.epic("User Management")
 @allure.feature("Authentication")
 @allure.story("Invalid Login")
