@@ -100,7 +100,6 @@ GitHub Actions (CI)
 
 ### 1️⃣ Clone the repository
 
-```bash
 git clone https://github.com/jasonsmoliak/playwright-python-automation-framework.git
 cd playwright-python-automation-framework
 
@@ -205,17 +204,13 @@ Invalid login validation
 
 Navigation verification
 
-🔮 Future Improvements
+## 🔮 Future Enhancements
 
-API testing integration
-
-Test data management
-
-Environment configuration (dev/stage/prod)
-
-Reporting with Allure
-
-Dockerized test execution
+- Dockerized test execution for consistent environments
+- Advanced test reporting (Allure history & trends)
+- CI pipeline optimization (parallel execution, scheduled runs)
+- Additional API mocking scenarios for edge case coverage
+- Integration with external test management tools (e.g., TestRail)
 
 👤 Author - Jason Smoliak
 
