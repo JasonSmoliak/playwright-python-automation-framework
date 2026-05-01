@@ -96,55 +96,75 @@ Git
 
 GitHub Actions (CI)
 
-⚙️ Setup Instructions
+## 🚀 Quick Start / How to Run
 
-Clone the repository:
+### 1️⃣ Clone the repository
 
+```bash
 git clone https://github.com/jasonsmoliak/playwright-python-automation-framework.git
 cd playwright-python-automation-framework
 
-Create and activate a virtual environment:
+2️⃣ Create and activate virtual environment
 
 python3 -m venv venv
 source venv/bin/activate
 
-Install dependencies and browsers:
+3️⃣ Install dependencies
 
 pip install -r requirements.txt
 playwright install
 
-▶️ Running Tests
+4️⃣ Run tests
 
 Run all tests:
 
 pytest
 
-Run with visible browser:
+Run specific test groups:
 
-pytest --headed
+# Smoke tests (critical path)
+pytest -m smoke
 
-🧰 Using Makefile (Recommended)
-### Environment-specific commands
+# UI tests only
+pytest -m ui
 
-```bash
-make test-dev
-make test-stage
-make test-prod
+# API tests only
+pytest -m api
 
-make login-dev
-make login-stage
-make login-prod
-```
+Or use Makefile commands:
 
-⚡ Parallel Execution
+make test
+make test-smoke
+make test-ui
+make test-api
 
-Run tests in parallel:
+5️⃣ Run tests with retry logic (for flaky scenarioos)
+
+make test-ui-rerun
+
+6️⃣ Generate Allure Report
+
+make allure-results
+make allure-serve
+
+This will open a browser with a detailed test report including:
+
+* test steps
+* screenshots on failure
+* environment info
+* categorized failures
+
+7️⃣ Run tests in parallel 
 
 pytest -n auto
 
-Or:
+🧪 Example Test Coverage
 
-make test-parallel
+* UI login validation
+* Dynamic table data validation
+* API + UI combined workflows
+* Mocked API success and error scenarios
+
 
 🐞 Debugging Failures
 
