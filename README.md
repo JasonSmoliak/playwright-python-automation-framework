@@ -1,7 +1,5 @@
 <h1 align="center">Playwright Python Automation Framework</h1>
 
-![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)
-
 <p align="center">
   <img src="https://img.shields.io/badge/Playwright-passing-brightgreen" />
   <img src="https://img.shields.io/badge/Python-3.12-blue" />
