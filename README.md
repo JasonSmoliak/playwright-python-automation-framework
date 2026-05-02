@@ -1,11 +1,17 @@
-# Playwright Python Automation Framework
+<h1 align="center">Playwright Python Automation Framework</h1>
 
-![Playwright Tests](https://github.com/jasonsmoliak/playwright-python-automation-framework/actions/workflows/playwright.yml/badge.svg)
+![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)
 
-This project demonstrates a UI automation framework built with **Playwright**, **Python**, and **pytest** using the **Page Object Model (POM)** design pattern.
+<p align="center">
+  <img src="https://img.shields.io/badge/Playwright-passing-brightgreen" />
+  <img src="https://img.shields.io/badge/Python-3.12-blue" />
+  <img src="https://img.shields.io/badge/Pytest-Framework-orange" />
+  <img src="https://img.shields.io/badge/Allure-Reporting-purple" />
+</p>
 
-The framework includes both **positive and negative test scenarios**, along with debugging features such as **automatic screenshots and Playwright trace files on failure**, and **parallel test execution**.
-
+<p align="center">
+  A modern end-to-end automation framework using Playwright, pytest, and Allure reporting.
+</p>
 ---
 
 ## 📁 Project Structure
