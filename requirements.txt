@@ -3,3 +3,4 @@ pytest-playwright
 pytest-xdist
 allure-pytest
 pytest-rerunfailures
+playwright==1.59.0
