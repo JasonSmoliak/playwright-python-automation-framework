@@ -1,11 +1,18 @@
+from pathlib import Path
+
 import pytest
-from playwright.sync_api import expect
 
 pytestmark = pytest.mark.ui
 
 
-def test_download_file(page):
-    page.set_content("""
+def test_download_file_and_verify_contents(page):
+    downloads_dir = Path("downloads")
+    downloads_dir.mkdir(exist_ok=True)
+
+    expected_text = "This is a downloaded file."
+    save_path = downloads_dir / "sample_download.txt"
+
+    page.set_content(f"""
     <h1>File Download</h1>
 
     <a id="download-link"
@@ -22,5 +29,7 @@ def test_download_file(page):
 
     assert download.suggested_filename == "sample_download.txt"
 
-    downloaded_path = download.path()
-    assert downloaded_path is not None
+    download.save_as(save_path)
+
+    assert save_path.exists()
+    assert save_path.read_text() == expected_text
