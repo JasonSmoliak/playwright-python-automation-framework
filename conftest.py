@@ -130,3 +130,18 @@ def dropdown_page(page):
 @pytest.fixture
 def post_details_page(page):
     return PostDetailsPage(page)
+
+@pytest.fixture
+def post_payload_factory():
+    def _create_post_payload(
+        title="Default Post Title",
+        body="Default post body created by factory",
+        user_id=1,
+    ):
+        return {
+            "title": title,
+            "body": body,
+            "userId": user_id,
+        }
+
+    return _create_post_payload
