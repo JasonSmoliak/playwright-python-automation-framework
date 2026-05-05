@@ -7,7 +7,10 @@ import allure
 import pytest
 
 from config import get_current_env
-
+from pages.login_page import LoginPage
+from pages.dynamic_table_page import DynamicTablePage
+from pages.dropdown_page import DropdownPage
+from pages.post_details_page import PostDetailsPage
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -108,3 +111,22 @@ def api_ui_state_file():
         json.dump(state, f, indent=2)
 
     return state_file
+
+@pytest.fixture
+def login_page(page, app_url):
+    return LoginPage(page, app_url)
+
+
+@pytest.fixture
+def dynamic_table_page(page):
+    return DynamicTablePage(page)
+
+
+@pytest.fixture
+def dropdown_page(page):
+    return DropdownPage(page)
+
+
+@pytest.fixture
+def post_details_page(page):
+    return PostDetailsPage(page)

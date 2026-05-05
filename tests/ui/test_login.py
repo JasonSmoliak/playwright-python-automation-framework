@@ -1,19 +1,16 @@
 import pytest
 import allure
-from pages.login_page import LoginPage
+
 pytestmark = pytest.mark.ui
 
 
 @pytest.mark.smoke
-@pytest.mark.ui
 @allure.epic("User Management")
 @allure.feature("Authentication")
 @allure.story("Successful Login")
 @allure.title("Successful login with valid credentials")
 @allure.severity(allure.severity_level.CRITICAL)
-def test_successful_login(page, app_url, credentials):
-    login_page = LoginPage(page, app_url)
-
+def test_successful_login(login_page, credentials):
     with allure.step("Open the login page"):
         login_page.load()
 
@@ -25,15 +22,12 @@ def test_successful_login(page, app_url, credentials):
 
 
 @pytest.mark.regression
-@pytest.mark.ui
 @allure.epic("User Management")
 @allure.feature("Authentication")
 @allure.story("Invalid Login")
 @allure.title("Login fails with invalid credentials")
 @allure.severity(allure.severity_level.NORMAL)
-def test_invalid_login(page, app_url):
-    login_page = LoginPage(page, app_url)
-
+def test_invalid_login(login_page):
     with allure.step("Open the login page"):
         login_page.load()
 

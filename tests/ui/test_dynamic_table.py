@@ -2,11 +2,6 @@ import pytest
 
 pytestmark = [pytest.mark.ui, pytest.mark.flaky(reruns=2, reruns_delay=1)]
 
-from pages.dynamic_table_page import DynamicTablePage
-
-
-def test_chrome_cpu_matches_label(page):
-    dynamic_table_page = DynamicTablePage(page)
-
+def test_chrome_cpu_matches_label(dynamic_table_page):
     dynamic_table_page.load()
     dynamic_table_page.verify_chrome_cpu_matches_label()
