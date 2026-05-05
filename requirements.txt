@@ -4,3 +4,5 @@ pytest-xdist
 allure-pytest
 pytest-rerunfailures
 playwright==1.59.0
+pillow
+pixelmatch

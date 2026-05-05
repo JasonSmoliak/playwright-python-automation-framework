@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 downloads/
+visual_actual/
+visual_diffs/
 
 # Virtual environment
 venv/
