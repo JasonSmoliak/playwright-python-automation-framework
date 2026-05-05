@@ -4,8 +4,7 @@ import pytest
 from PIL import Image
 from pixelmatch.contrib.PIL import pixelmatch
 
-pytestmark = pytest.mark.ui
-
+pytestmark = [pytest.mark.ui, pytest.mark.visual]
 
 def test_visual_diff_against_baseline(page):
     baseline_path = Path("visual_baselines/welcome_page.png")
