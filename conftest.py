@@ -155,3 +155,47 @@ def page_factory(page, app_url):
             return page_class(page, *args, **kwargs)
 
     return _create_page_object
+
+@pytest.fixture
+def user_session_factory(browser):
+    def _create_user_session(role="standard"):
+
+        context = browser.new_context()
+        page = context.new_page()
+
+        if role == "admin":
+            storage = {
+                "role": "admin",
+                "token": "admin-token-123",
+            }
+
+        elif role == "guest":
+            storage = {
+                "role": "guest",
+                "token": "guest-token-456",
+            }
+
+        else:
+            storage = {
+                "role": "standard",
+                "token": "standard-token-789",
+            }
+
+        page.goto("https://example.com")
+
+        page.evaluate(
+            """(storage) => {
+                localStorage.setItem("user_role", storage.role);
+                localStorage.setItem("auth_token", storage.token);
+            }""",
+            storage,
+        )
+
+        return {
+            "context": context,
+            "page": page,
+            "role": storage["role"],
+            "token": storage["token"],
+        }
+
+    return _create_user_session
