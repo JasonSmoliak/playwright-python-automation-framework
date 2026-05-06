@@ -6,7 +6,7 @@ from pathlib import Path
 import allure
 import pytest
 
-from config import get_current_env
+from env_config.config_loader import load_env_config
 from pages.login_page import LoginPage
 from pages.dynamic_table_page import DynamicTablePage
 from pages.dropdown_page import DropdownPage
@@ -35,8 +35,7 @@ def pytest_runtest_makereport(item, call):
 
 @pytest.fixture(scope="session")
 def env_config():
-    return get_current_env()
-
+    return load_env_config()
 
 @pytest.fixture(scope="session")
 def app_url(env_config):
