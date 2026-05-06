@@ -1,5 +1,5 @@
 {
-  "base_url": "https://the-internet.herokuapp.com/login",
-  "username": "tomsmith",
-  "password": "SuperSecretPassword!"
+  "base_url": "https://practice.expandtesting.com/login",
+  "username_env": "QA_USERNAME",
+  "password_env": "QA_PASSWORD"
 }
