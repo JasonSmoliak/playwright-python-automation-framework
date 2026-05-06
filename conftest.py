@@ -145,3 +145,13 @@ def post_payload_factory():
         }
 
     return _create_post_payload
+
+@pytest.fixture
+def page_factory(page, app_url):
+    def _create_page_object(page_class, *args, **kwargs):
+        try:
+            return page_class(page, app_url, *args, **kwargs)
+        except TypeError:
+            return page_class(page, *args, **kwargs)
+
+    return _create_page_object
