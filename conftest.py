@@ -11,6 +11,8 @@ from pages.login_page import LoginPage
 from pages.dynamic_table_page import DynamicTablePage
 from pages.dropdown_page import DropdownPage
 from pages.post_details_page import PostDetailsPage
+from api.posts_client import PostsClient
+
 
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
@@ -57,6 +59,10 @@ def api_context(playwright):
     )
     yield context
     context.dispose()
+
+@pytest.fixture
+def posts_client(api_context):
+    return PostsClient(api_context)
 
 
 @pytest.fixture(scope="session")

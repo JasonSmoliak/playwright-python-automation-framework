@@ -16,16 +16,14 @@ def test_get_post(api_context):
 
 @pytest.mark.api
 @pytest.mark.regression
-def test_create_post(api_context):
+def test_create_post(posts_client):
     payload = {
         "title": "Playwright API test",
         "body": "Learning API automation with Python",
         "userId": 1
     }
 
-    response = api_context.post("/posts", data=payload)
-
-    expect(response).to_be_ok()
+    response = posts_client.create_post(payload)
 
     body = response.json()
     assert body["title"] == "Playwright API test"
