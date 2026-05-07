@@ -1,5 +1,7 @@
 import json
 
+import allure
+
 from utils.logger import get_logger
 
 
@@ -14,21 +16,43 @@ class BaseApiClient:
         except Exception:
             return response.text()
 
-    def _log_request(self, method, endpoint, payload=None):
-        self.logger.info(f"REQUEST: {method} {endpoint}")
+    def _format_payload(self, payload):
+        if payload is None:
+            return "No payload"
+        return json.dumps(payload, indent=2)
 
+    def _attach_to_allure(self, name, content):
+        allure.attach(
+            content,
+            name=name,
+            attachment_type=allure.attachment_type.TEXT,
+        )
+
+    def _log_request(self, method, endpoint, payload=None):
+        request_details = (
+            f"METHOD: {method}\n"
+            f"ENDPOINT: {endpoint}\n\n"
+            f"PAYLOAD:\n{self._format_payload(payload)}"
+        )
+
+        self.logger.info(f"REQUEST: {method} {endpoint}")
         if payload is not None:
-            self.logger.info(
-                "REQUEST PAYLOAD:\n"
-                f"{json.dumps(payload, indent=2)}"
-            )
+            self.logger.info(f"REQUEST PAYLOAD:\n{self._format_payload(payload)}")
+
+        self._attach_to_allure("API Request", request_details)
 
     def _log_response(self, response):
-        self.logger.info(f"RESPONSE STATUS: {response.status}")
-        self.logger.info(
-            "RESPONSE BODY:\n"
-            f"{self._format_body(response)}"
+        response_body = self._format_body(response)
+
+        response_details = (
+            f"STATUS: {response.status}\n\n"
+            f"BODY:\n{response_body}"
         )
+
+        self.logger.info(f"RESPONSE STATUS: {response.status}")
+        self.logger.info(f"RESPONSE BODY:\n{response_body}")
+
+        self._attach_to_allure("API Response", response_details)
 
     def _request(self, method, endpoint, payload=None):
         self._log_request(method, endpoint, payload)
@@ -49,9 +73,7 @@ class BaseApiClient:
 
     def assert_ok(self, response, action="API request"):
         if response.ok:
-            self.logger.info(
-                f"{action} succeeded with status {response.status}"
-            )
+            self.logger.info(f"{action} succeeded with status {response.status}")
         else:
             self.logger.error(
                 f"{action} failed with status {response.status}. "

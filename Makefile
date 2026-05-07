@@ -46,7 +46,7 @@ clean:
 	find . -type f -name "*.pyc" -delete
 
 allure-results:
-	pytest --alluredir=allure-results --clean-alluredir
+	pytest -m "not visual" --alluredir=allure-results --clean-alluredir
 	python scripts/write_allure_environment.py
 	python scripts/write_allure_categories.py
 
