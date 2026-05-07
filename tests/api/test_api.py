@@ -1,6 +1,9 @@
 import pytest
 import allure
 from playwright.sync_api import expect
+from schemas.post_schema import POST_SCHEMA
+from utils.schema_validator import validate_schema
+
 
 @pytest.mark.api
 @pytest.mark.smoke
@@ -40,3 +43,10 @@ def test_api_then_ui(page, api_context):
 
     content = page.locator("body").inner_text()
     assert "id" in content
+
+def test_get_post_schema(posts_client):
+    response = posts_client.get_post(1)
+
+    body = response.json()
+
+    validate_schema(body, POST_SCHEMA)
