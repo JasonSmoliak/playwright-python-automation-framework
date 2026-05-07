@@ -5,6 +5,7 @@ downloads/
 visual_actual/
 visual_diffs/
 .env
+logs/
 
 # Virtual environment
 venv/
