@@ -8,3 +8,4 @@ pillow
 pixelmatch
 python-dotenv
 jsonschema
+pytest-asyncio
