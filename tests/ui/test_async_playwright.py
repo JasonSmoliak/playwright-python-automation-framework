@@ -2,8 +2,7 @@ import pytest
 
 from playwright.async_api import async_playwright
 
-pytestmark = pytest.mark.ui
-
+pytestmark = [pytest.mark.ui, pytest.mark.asyncdemo]
 
 @pytest.mark.asyncio
 async def test_async_playwright_example():

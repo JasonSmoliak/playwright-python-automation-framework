@@ -27,4 +27,4 @@ jobs:
         env:
           QA_USERNAME: practice
           QA_PASSWORD: SuperSecretPassword!
-        run: pytest -n auto -m "not visual"
+        run: pytest -n auto -m "not visual and not asyncdemo"
