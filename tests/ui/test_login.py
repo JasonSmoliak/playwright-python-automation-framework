@@ -3,7 +3,6 @@ import allure
 
 pytestmark = pytest.mark.ui
 
-
 @pytest.mark.smoke
 @allure.epic("User Management")
 @allure.feature("Authentication")
@@ -19,7 +18,6 @@ def test_successful_login(login_page, credentials):
 
     with allure.step("Verify user is redirected to secure page"):
         login_page.verify_successful_login()
-
 
 @pytest.mark.regression
 @allure.epic("User Management")

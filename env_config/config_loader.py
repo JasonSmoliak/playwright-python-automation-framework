@@ -5,10 +5,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 
-def load_env_config():
+def load_env_config(env):
     load_dotenv()
 
-    env = os.getenv("ENV", "dev")
     config_file = Path(f"env_config/{env}.json")
 
     if not config_file.exists():

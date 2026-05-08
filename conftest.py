@@ -36,8 +36,8 @@ def pytest_runtest_makereport(item, call):
 
 
 @pytest.fixture(scope="session")
-def env_config():
-    return load_env_config()
+def env_config(selected_env):
+    return load_env_config(selected_env)
 
 @pytest.fixture(scope="session")
 def app_url(env_config):
@@ -229,3 +229,15 @@ def auth_state_file():
         json.dump(state, f, indent=2)
 
     return state_file
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--env",
+        action="store",
+        default="dev",
+        help="Environment to run tests against",
+    )
+
+@pytest.fixture(scope="session")
+def selected_env(request):
+    return request.config.getoption("--env")
